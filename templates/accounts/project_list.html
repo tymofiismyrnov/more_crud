@@ -1,0 +1,22 @@
+{% extends 'accounts/base.html' %}
+{% block body_block %}
+    <h1>This is a home page. List of all projects</h1>
+    {% for proj in project_list %}
+        <ul>
+            <lable><a href="{{ proj.get_absolute_url }}">{{ proj.name }}</a>:</lable>
+            <li>Description: {{ proj.description }}</li><br>
+            <p>Contractors:<br>
+            {% if proj.contractor_set.all %}
+
+                {% for x in proj.contractor_set.all %}
+                    <a href="{{ x.get_absolute_url }}">{{ x }}</a><br>
+                {% endfor %}
+
+            {% else %}
+                <p>This project has no contractors yet</p>
+
+            {% endif %}
+            </p>
+        </ul><br>
+    {% endfor %}
+{% endblock %}

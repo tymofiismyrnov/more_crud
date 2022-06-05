@@ -1,0 +1,20 @@
+{% extends 'accounts/base.html' %}
+{% block body_block %}
+    <h1>{{ project.name }}</h1>
+    <p>Description:<br>{{ project.description }}</p>
+
+    <p>Contractors:<br>
+        {% if project.contractor_set.all %}
+
+            {% for x in project.contractor_set.all %}
+                <a href="{{ x.get_absolute_url }}">{{ x }}</a><br>
+            {% endfor %}
+
+        {% else %}
+            <p>This project has no contractors yet</p>
+
+        {% endif %}
+    </p>
+    <a href="{% url 'project-update' project.pk %}">Update project</a>
+    <a href="{% url 'project-delete' project.pk %}">Delete project</a>
+{% endblock %}

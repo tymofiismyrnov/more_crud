@@ -1,0 +1,12 @@
+{% extends 'accounts/base.html' %}
+{% block body_block %}
+    {% if contractor %}
+        <h1>{{ contractor.name }} {{ contractor.last_name }}</h1>
+        <p>{{ contractor.email }}</p>
+        <p>{{ contractor.project }}</p>
+    {% else %}
+        <p>There's no such contractor</p>
+    {% endif %}
+    <a href="{% url 'contractor-update' contractor.pk %}">Update contractor's info</a>
+    <a href="{% url 'contractor-delete' contractor.pk %}">Delete contractor</a>
+{% endblock %}
